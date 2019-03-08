@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Homepage</title>
+<link rel="stylesheet" type="text/css" media="screen" href="homepage.css">
+
+</head>
+<body>
+
+<div class="main-box">
+	<h1 id="welcome">Welcome</h1>
+	
+	<div class="menu-box">
+		<details>
+			<summary>Submit Request</summary>
+			<form method="POST" action="submit-request">
+				<input type="text" name="id" placeholder = "ID">
+				<input type="text" name="reason" placeholder="Reason">	
+				<input type="text" name="amount" placeholder="Amount">	
+				<input type="submit" id="submit-request" name="Submit">	
+			</form>
+		</details>
+		
+		<details>
+			<summary>View All Requests</summary>
+			<form method="POST" action="view-request">
+				<br>
+				<input type="submit" id="view-request" value="View Requests">
+				<input type="radio" name="status" value="pending">Pending
+				<input type="radio" name="status" value="approved">Approved
+				<br>
+			</form>
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td id=""></td>
+						<td id=""></td>
+						<td id=""></td>
+						<td id=""></td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+		
+		<details>
+			<summary>View Info</summary>
+			<form method ="POST" action="view-info">
+				<b00r>
+				<input type="submit" id="view-info" value="View Info">
+			</form>
+		</details>
+		
+	</div>
+	<script src="main.js"></script>
+
+</div>
+
+</body>
+</html>

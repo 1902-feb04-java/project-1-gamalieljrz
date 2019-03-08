@@ -1,0 +1,28 @@
+@charset "ISO-8859-1";
+
+html,body{
+	height: 100%;
+	background-color: #4ea3b1; 
+}
+body{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.menu-box{
+	position: relative;
+	background-color: white;
+	margin-top: auto;
+	margin-bottom: auto;
+	display: block;
+	width: 500px;
+	height: 500px;
+	text-align: center;
+	z-index: 1;
+}
+.welcome{
+	position: relative;
+	text-align: center;
+}
