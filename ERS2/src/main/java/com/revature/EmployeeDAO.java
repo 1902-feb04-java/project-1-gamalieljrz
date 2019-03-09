@@ -67,20 +67,20 @@ public class EmployeeDAO {
 		boolean val = false;
 		try {
 			connection = DAOUtil.getConnection();
-			String sql = "UPDATE"
-					+ "employees SET"
+			String sql = "UPDATE "
+					+ "reimburse_process.employees SET "
 					+ "first_name = ?, "
 					+ "last_name = ?, "
 					+ "email = ? "
-					+ "ismanager = ?"
-					+ "WHERE id = ?";
+					//+ "ismanager = ? "
+					+ "WHERE id = ? ";
 			stment = connection.prepareStatement(sql);
 			
 			stment.setString(1, emp.getFirstName());
 			stment.setString(2, emp.getLastName());
 			stment.setString(3,  emp.getEmail());
-			stment.setBoolean(4, emp.isManager);
-			stment.setInt(5, emp.getId());
+			//stment.setBoolean(4, emp.isManager);
+			stment.setInt(4, emp.getId());
 			
 			if(stment.executeUpdate() != 0)
 				return val = true;

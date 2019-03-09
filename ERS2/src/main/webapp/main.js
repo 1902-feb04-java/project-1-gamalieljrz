@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded' , () => {
 	var eManager = document.getElementById('manager-table');
 	var eReason = document.getElementById('reason-table');
 	
-	fetch('http://localhost:8080/ERS2/submit-request')
+	fetch('http://localhost:8080/ERS2/')
 		//response.json() returns a promise
 		.then(respsonse => response.json())
 		//then we retrieve value to process onto the page

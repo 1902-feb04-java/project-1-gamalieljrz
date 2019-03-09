@@ -24,5 +24,54 @@
     <servlet-name>SubmitRequest</servlet-name>
     <url-pattern>/submit-request</url-pattern>
   </servlet-mapping>
- 
+  <servlet>
+    <description></description>
+    <display-name>ServeltViewInfo</display-name>
+    <servlet-name>ServeltViewInfo</servlet-name>
+    <servlet-class>com.revature.ServeltViewInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServeltViewInfo</servlet-name>
+    <url-pattern>/ServeltViewInfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletUpdateInfo</display-name>
+    <servlet-name>ServletUpdateInfo</servlet-name>
+    <servlet-class>com.revature.ServletUpdateInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletUpdateInfo</servlet-name>
+    <url-pattern>/ServletUpdateInfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletLogout</display-name>
+    <servlet-name>ServletLogout</servlet-name>
+    <servlet-class>com.revature.ServletLogout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletLogout</servlet-name>
+    <url-pattern>/ServletLogout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletViewEmp</display-name>
+    <servlet-name>ServletViewEmp</servlet-name>
+    <servlet-class>com.revature.ServletViewEmp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletViewEmp</servlet-name>
+    <url-pattern>/ServletViewEmp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletApproveDeny</display-name>
+    <servlet-name>ServletApproveDeny</servlet-name>
+    <servlet-class>com.revature.ServletApproveDeny</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletApproveDeny</servlet-name>
+    <url-pattern>/ServletApproveDeny</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -2,20 +2,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Homepage</title>
+<title>Employee Homepage</title>
 <link rel="stylesheet" type="text/css" media="screen" href="homepage.css">
 
 </head>
 <body>
 
 <div class="main-box">
-	<h1 id="welcome">Welcome</h1>
+	<h1 id="welcome">Welcome Employee</h1>
 	
 	<div class="menu-box">
 		<details>
 			<summary>Submit Request</summary>
 			<form method="POST" action="submit-request">
-				<input type="text" name="id" placeholder = "ID">
 				<input type="text" name="reason" placeholder="Reason">	
 				<input type="text" name="amount" placeholder="Amount">	
 				<input type="submit" id="submit-request" name="Submit">	
@@ -54,11 +53,24 @@
 		<details>
 			<summary>View Info</summary>
 			<form method ="POST" action="view-info">
-				<b00r>
+				<br>
 				<input type="submit" id="view-info" value="View Info">
 			</form>
+			<br>
 		</details>
-		
+		<details>
+			<summary>Update Info</summary>
+			<form method ="POST" action="update-info">
+			<input type="text" name="first-name" placeholder="First Name">
+			<input type="text" name = "last-name" placeholder = "Last Name">
+			<input type="text" name ="email" placeholder = "Email">
+			<input type="submit" value="Update">
+			</form>
+		</details>
+		<br>
+		<form method ="POST" action="logout">
+		<input type="submit" id="logout" value="Logout">
+		</form>
 	</div>
 	<script src="main.js"></script>
 

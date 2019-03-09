@@ -33,13 +33,6 @@ public class ServletLogin extends HttpServlet {
     		user = request.getParameter("username");
     	}
 		String password = request.getParameter("password");
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		//Check credentials
-//		if(user.equals("izzie")) {
-//			RequestDispatcher myRD = request.getRequestDispatcher("/homepage.html");
-//			myRD.include(request, response);
-//		}
 		
 		DAOUtil cred = new DAOUtil();
 		EmployeeDAO empDAO = DAOUtil.getEmployeeDAO();
@@ -50,8 +43,15 @@ public class ServletLogin extends HttpServlet {
 			session.setAttribute("email", user);
 			session.setAttribute("id", empId);
 			session.setAttribute("isManager", eDAO.isManager());
-			System.out.println("Mananger? :"+eDAO.isManager());
-			request.getRequestDispatcher("homepage.html").forward(request, response);
+			System.out.println("Mananger? "+eDAO.isManager());
+			
+			//Check if Employee is a Manager
+			if(eDAO.isManager) {
+				request.getRequestDispatcher("/man-homepage.html").forward(request, response);
+			}else {
+				request.getRequestDispatcher("/homepage.html").forward(request, response);
+			}
+			
 		}else {
 			//response.sendRedirect("index.html");
 			//response.getWriter().write("Failed to Login");

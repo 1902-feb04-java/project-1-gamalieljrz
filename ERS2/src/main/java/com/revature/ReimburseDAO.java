@@ -17,6 +17,7 @@ public class ReimburseDAO {
 	double amount;
 	int employeeId;
 	Status status;
+	String stat;
 	byte[] image;
 	String reason;
 	String imageString;
@@ -24,16 +25,17 @@ public class ReimburseDAO {
 	String lastName;
 
 	public enum Status {
-		pending, accepted, rejected, invalid
+		pending, approved, denied, invalid
 	}
 
-	public ReimburseDAO(int id, double money, int empId, String stat, byte[] imgData, String reason, 
+	public ReimburseDAO(int id, double money, int empId, String status, String stat, byte[] imgData, String reason, 
 			String fName, String lName) {
 
 		this.id = id;
 		this.amount = money;
 		this.employeeId = empId;
-		this.status = stat != null ? Status.valueOf(stat.toLowerCase()) : null;
+		this.status = status != null ? Status.valueOf(status.toLowerCase()) : null;
+		this.stat = stat;
 		this.reason = reason;
 		this.image = imgData;
 		this.firstName = fName;
@@ -77,6 +79,9 @@ public class ReimburseDAO {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+	public void setStatus(String stat) {
+		this.stat = stat;
 	}
 
 	public void setImage(byte[] data) {
@@ -129,9 +134,9 @@ public class ReimburseDAO {
 		return getAllRequests(sql);
 	}
 	
-	public ReimburseDAO getRequestById(int id) {
+	public ReimburseDAO getRequestById(int id) {	
 		String sql = String.format("WHERE reimburse_process.reimbursements.id = %d", id);
-		return this.getAllRequests(sql).get(0);
+		return this.getAllRequests(sql).get(0); 
 	}
 	
 	public boolean addRequest(ReimburseDAO r) {
@@ -162,14 +167,14 @@ public class ReimburseDAO {
 	public boolean updateRequest(int requestId, int employeeId, String status) {
 		try {
 			connection = DAOUtil.getConnection();
-			String sql = "UPDATE reimburse_process.reimbursements SET status = ? , "
-					+ "WHERE id = ?";
+			String sql = "UPDATE reimburse_process.reimbursements SET status = ? "
+					+ "WHERE id = ? ";
 			stment = connection.prepareStatement(sql);
 			
-			status = "'" + status + "'";
+			//status = "'" + status + "'";
 			stment.setString(1, status);
-			stment.setInt(2, employeeId);
-			stment.setInt(3, requestId);
+			//stment.setInt(2, employeeId);
+			stment.setInt(2, requestId);
 			
 			if(stment.executeUpdate() !=0)
 				return true;
@@ -182,6 +187,7 @@ public class ReimburseDAO {
 			}finally {
 				closeResources();
 			}
+		
 	}
 	
 	List<ReimburseDAO> ParseReimbursements(ResultSet rs){
@@ -198,7 +204,7 @@ public class ReimburseDAO {
 				String fname = rs.getString("first_name");
 				String lname = rs.getString("last_name");
 				
-				ReimburseDAO request = new ReimburseDAO (requestId, amount, employee, status, image,reason, fname,lname);
+				ReimburseDAO request = new ReimburseDAO (requestId, amount, employee, status, stat, image,reason, fname,lname);
 				request.setImageString(image);
 				requests.add(request);
 					

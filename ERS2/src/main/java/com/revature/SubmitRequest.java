@@ -35,7 +35,6 @@ public class SubmitRequest extends HttpServlet {
 		String status = "pending";
 		ReimburseDAO sub = new ReimburseDAO(amount, employeeId, reason, status);
 		
-		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		System.out.println("Request info: "
 				+"\nID: $"+id

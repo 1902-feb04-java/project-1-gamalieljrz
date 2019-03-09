@@ -22,7 +22,6 @@ public class ServletViewAllRequest extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession(false);
 		ReimburseDAO reDAO = new ReimburseDAO();
 		
@@ -32,6 +31,7 @@ public class ServletViewAllRequest extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		for(int i=0; i<requests.size(); i++) {
+			out.println("<h1>Reimbursement ID: "+requests.get(i).id+"<h1>");
 			out.println("<h1>Amount: $"+ requests.get(i).amount+"</h1>");
 			out.println("<h1>Employee Id: "+ requests.get(i).employeeId+"</h1>");
 			out.println("<h1>Status: "+ requests.get(i).status+"</h1>");
@@ -41,7 +41,7 @@ public class ServletViewAllRequest extends HttpServlet {
 			out.println("***********************************************");
 		}
 		
-		out.println("<a href='homepage.html'>BACK</a>");
+		out.println("<a href='man-homepage.html'>BACK</a>");
 		out.close();
 		
 		//String json = new Gson().toJson(requests);

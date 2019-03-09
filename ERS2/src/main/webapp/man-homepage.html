@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Manager Homepage</title>
+<link rel="stylesheet" type="text/css" media="screen" href="man-homepage.css">
+</head>
+<body>
+
+<div class="main-box">
+	<h1 id="welcome">Welcome Manager</h1>
+	
+	<div class="menu-box">
+		<details>
+			<summary>Approve/Deny Requests</summary>
+			<form method="POST" action="approve-deny-requests">
+				<input type="text" name="r-id" placeholder="Request ID">
+				<input type="text" name="employee-id" placeholder="Employee ID">
+				<!-- <input type="text" name="status" placeholder="Approve/Deny"> -->
+				<input type="radio" name="status" value="denied">Denied
+				<input type="radio" name="status" value="approved">Approved
+				<input type="submit" id="approve-deny-requests" value="Update">	
+			</form>
+		</details>
+		
+		<details>
+			<summary>View All Requests</summary>
+			<form method="POST" action="view-request">
+				<br>
+				<input type="submit" id="view-request" value="View Requests">
+				<input type="radio" name="status" value="pending">Pending
+				<input type="radio" name="status" value="approved">Approved
+				<input type="radio" name="status" value="denied">Denied
+				<br>
+			</form>
+			
+		</details>
+		
+		<details>
+			<summary>View Employees</summary>
+			<form method ="POST" action="view-employees">
+				<br>
+				<input type="submit" id="view-employees" value="View Employees">
+			</form>
+			<br>
+		</details>
+		<details>
+			<summary>View Requests of Employee</summary>
+			<form method ="POST" action="single-request">
+			<input type="text" name="first-name" placeholder="First Name">
+			<input type="text" name = "last-name" placeholder = "Last Name">
+			<input type="submit" value="View Requests">
+			</form>
+		</details>
+		<br>
+		<form method ="POST" action="logout">
+		<input type="submit" id="logout" value="Logout">
+		</form>
+	</div>
+	<script src="main.js"></script>
+
+</div>
+
+</body>
+</html>
