@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/update-info")
+/*
+ * Servlet allowing Employee to Update their info.
+ */
 public class ServletUpdateInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,6 +28,8 @@ public class ServletUpdateInfo extends HttpServlet {
 		String fName = request.getParameter("first-name");
 		String lName = request.getParameter("last-name");
 		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
 		EmployeeDAO empDAO = DAOUtil.getEmployeeDAO();
 		EmployeeDAO emp =  empDAO.getEmployeeById(employeeId);
 		emp.setId(employeeId);
@@ -52,11 +57,19 @@ public class ServletUpdateInfo extends HttpServlet {
 			emp.setEmail(email);
 		}
 		
+		// Check Password if null
+		if (email == "") {
+			emp.setPassword(emp.password);
+		} else {
+			emp.setPassword(password);
+		}
+		
 		if(empDAO.updateEmployee(emp)) {
 			System.out.println("Update Successful!");
 			request.getRequestDispatcher("homepage.html").forward(request, response);
 		}else {
 			System.out.println("Update Failed");
+			request.getRequestDispatcher("homepage.html").forward(request, response);
 		}
 		
 		

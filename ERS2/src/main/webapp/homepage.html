@@ -22,12 +22,11 @@
 		</details>
 		
 		<details>
-			<summary>View All Requests</summary>
-			<form method="POST" action="view-request">
+			<summary>View All My Requests</summary>
+			<form method="POST" action="view-my-requests">
 				<br>
-				<input type="submit" id="view-request" value="View Requests">
-				<input type="radio" name="status" value="pending">Pending
-				<input type="radio" name="status" value="approved">Approved
+				<input type="submit" id="view-my-requests" value="View My Requests">
+				
 				<br>
 			</form>
 			<table>
@@ -63,7 +62,9 @@
 			<form method ="POST" action="update-info">
 			<input type="text" name="first-name" placeholder="First Name">
 			<input type="text" name = "last-name" placeholder = "Last Name">
+			<br>
 			<input type="text" name ="email" placeholder = "Email">
+			<input type="text" name ="password" placeholder = "Password">
 			<input type="submit" value="Update">
 			</form>
 		</details>

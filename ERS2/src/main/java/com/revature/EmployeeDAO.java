@@ -7,22 +7,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Functionality for Employee data
+ */
 public class EmployeeDAO {
 	
 	private static Connection connection;
+	private static Connection nextConnection;
 	private static PreparedStatement stment;
+	private static PreparedStatement nextStment;
 	
 	//Retrieve by id
 	public EmployeeDAO getEmployeeById(int id) {
-		String sql = String.format("WHERE id = %d", id);
+		String sql = String.format("WHERE reimburse_process.employees.id = %d", id);
 		return getAllEmployees(sql).get(0);
 	}
 	
 	//Retrieve by name
 	public EmployeeDAO getEmployeeByName(String fName, String lName) {
 		String sql = String.format("WHERE "
-				+ "first_name = %s AND"
-				+ "last_name = %s", fName,lName);
+				+ "reimburse_process.employees.first_name = '%s' AND "
+				+ "reimburse_process.employees.last_name = '%s'", fName,lName);
 		return getAllEmployees(sql).get(0);
 	}
 	
@@ -36,7 +41,10 @@ public class EmployeeDAO {
 		List<EmployeeDAO> employees = new ArrayList<EmployeeDAO>();
 		
 		try {
-			String start = "SELECT * FROM reimburse_process.employees ";
+			String start = "SELECT * FROM reimburse_process.employees "
+					+ "INNER JOIN reimburse_process.credentials "
+					+ "ON reimburse_process.credentials.user_name "
+					+ "= reimburse_process.employees.email ";
 			connection = DAOUtil.getConnection();
 			stment = connection.prepareStatement(start+sql);
 			
@@ -47,9 +55,10 @@ public class EmployeeDAO {
 				String fName = rs.getString("first_name");
 				String lName = rs.getString("last_name");
 				String email = rs.getString("email");
+				String password = rs.getString("password");
 				boolean isManager = rs.getBoolean("ismanager");
 				
-				EmployeeDAO e = new EmployeeDAO(eId, fName, lName, email, isManager);
+				EmployeeDAO e = new EmployeeDAO(eId, fName, lName, email, password, isManager);
 				employees.add(e);
 			}
 			rs.close();
@@ -65,6 +74,7 @@ public class EmployeeDAO {
 	//Update Employee Info
 	public boolean updateEmployee(EmployeeDAO emp) {
 		boolean val = false;
+		boolean nextVal = false;
 		try {
 			connection = DAOUtil.getConnection();
 			String sql = "UPDATE "
@@ -82,10 +92,17 @@ public class EmployeeDAO {
 			//stment.setBoolean(4, emp.isManager);
 			stment.setInt(4, emp.getId());
 			
-			if(stment.executeUpdate() != 0)
+			
+			if(stment.executeUpdate() != 0) {
+				System.out.println("\nEmployee Update happened in SQL table");
 				return val = true;
-			else
+			}
+			else {
+				System.out.println("\nUpdate did not happen in SQL table");
 				return val = false;
+			}
+
+				
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -99,14 +116,15 @@ public class EmployeeDAO {
 		try {
 			connection = DAOUtil.getConnection();
 			String sql = "INSERT INTO employees "
-					+ "(first_name, last_name, email, isManager)"
+					+ "(first_name, last_name, email, password, isManager)"
 					+ "VALUES(?,?,?,?)";
 			stment = connection.prepareStatement(sql);
 			
 			stment.setString(1, emp.getFirstName());
 			stment.setString(2, emp.getLastName());
 			stment.setString(3, emp.getEmail());
-			stment.setBoolean(4, emp.isManager());
+			stment.setString(4,  emp.getPassword());
+			stment.setBoolean(5, emp.isManager());
 			
 			if(stment.executeUpdate() != 0) 
 				return true;
@@ -123,7 +141,7 @@ public class EmployeeDAO {
 	//Employee Class
 	
 	int id;
-	String firstName, lastName, email;
+	String firstName, lastName, email, password;
 	boolean isManager;
 
 	int count = 0;
@@ -133,14 +151,16 @@ public class EmployeeDAO {
 		this.firstName = null;
 		this.lastName = null;
 		this.email = null;
+		this.password = null;
 	}
 
-	public EmployeeDAO(int id, String fName, String lName, String email, boolean isMan) {
+	public EmployeeDAO(int id, String fName, String lName, String email, String password, boolean isMan) {
 		this.id = id;
 		this.firstName = fName;
 		this.lastName = lName;
 		this.email = email;
 		this.isManager = isMan;
+		this.password = password;
 		System.out.println(this.toString());
 	}
 
@@ -163,6 +183,10 @@ public class EmployeeDAO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public int getId() {
 		return this.id;
@@ -178,6 +202,9 @@ public class EmployeeDAO {
 
 	public String getEmail() {
 		return this.email;
+	}
+	public String getPassword() {
+		return this.password;
 	}
 
 	public boolean isManager() {

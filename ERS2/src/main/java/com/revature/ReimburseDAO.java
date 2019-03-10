@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+/*
+ * Functionality for Reimbursement Data
+ */
 public class ReimburseDAO {
 
 	private static Connection connection;

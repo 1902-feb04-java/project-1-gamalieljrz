@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/view-employees")
+/***
+ Servlet to View ALL Employess
+ ***/
 public class ServletViewEmp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,7 +33,6 @@ public class ServletViewEmp extends HttpServlet {
 		employees = emps.getAllEmployees();
 		
 		PrintWriter out = response.getWriter();
-		System.out.println(employees.get(0).firstName);
 		for(int i=0; i < employees.size(); i++) {
 			out.println("<h1>First Name: "+employees.get(i).firstName+"</h1>");
 			out.println("<h1>Last Name: "+employees.get(i).lastName+"<h1>");

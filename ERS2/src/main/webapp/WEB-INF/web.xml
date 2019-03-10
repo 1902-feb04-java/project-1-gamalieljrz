@@ -74,4 +74,24 @@
     <servlet-name>ServletApproveDeny</servlet-name>
     <url-pattern>/ServletApproveDeny</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletSingleEmpRequest</display-name>
+    <servlet-name>ServletSingleEmpRequest</servlet-name>
+    <servlet-class>com.revature.ServletSingleEmpRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletSingleEmpRequest</servlet-name>
+    <url-pattern>/ServletSingleEmpRequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletViewMyRequests</display-name>
+    <servlet-name>ServletViewMyRequests</servlet-name>
+    <servlet-class>com.revature.ServletViewMyRequests</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletViewMyRequests</servlet-name>
+    <url-pattern>/ServletViewMyRequests</url-pattern>
+  </servlet-mapping>
 </web-app>

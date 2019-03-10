@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/approve-deny-requests")
+/*
+ * Servlet allowing Mangaer to Approve or Deny Requests 
+ * by ID(reimbursement-ID and Employee-ID)
+ */
 public class ServletApproveDeny extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

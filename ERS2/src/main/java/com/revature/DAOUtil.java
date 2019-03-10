@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//Creating Data Access Object Util to avoid redundancy
+/*
+ * SQL Connection Function and Startup
+ * Created Data Access Object Util Class to avoid redundancy
+ */
 public class DAOUtil {
 	
 	private static final String CONNECTION_USERNAME = "postgres";
